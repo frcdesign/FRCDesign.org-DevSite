@@ -23,10 +23,7 @@ jobs:
           key: ${{ github.ref }}
           path: .cache
       - name: Install dependencies
-        env: 
-          INSIDERS: ${{ secrets.INSIDERS }}
         run: |
-          pip install git+https://${INSIDERS}@github.com/frcdesign/mkdocs-material-insiders
           pip install mkdocs-glightbox
           pip install mkdocs-git-revision-date-localized-plugin
           pip install mkdocs-git-committers-plugin-2
@@ -37,7 +34,7 @@ jobs:
         env:
           MKDOCS_GIT_COMMITTERS_APIKEY: ${{ secrets.MKDOCS_PAT }}
           CI: true
-          INSIDERS: true
+          INSIDERS: false
         run: |
           mkdocs build
           mkdocs gh-deploy --force
